@@ -7,12 +7,14 @@ export default function NewPostPage() {
     const image = formData.get('image');
     const content = formData.get('content');
 
-    storePost({
-      imageUrl: '',
-      title,
-      content,
-      userId: 1
-    })
+    console.log({ title, image, content });
+
+    // storePost({
+    //   imageUrl: '',
+    //   title,
+    //   content,
+    //   userId: 1
+    // })
   }
 
   return (
