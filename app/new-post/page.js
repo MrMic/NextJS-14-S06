@@ -2,7 +2,10 @@ import { storePost } from '@/lib/posts';
 
 export default function NewPostPage() {
   async function createPost(formData) {
+    // INFO: Make it a Server Action otherwise it will be 
+    // INFO: a Client Action / Form Action
     "use server";
+
     const title = formData.get('title');
     const image = formData.get('image');
     const content = formData.get('content');
