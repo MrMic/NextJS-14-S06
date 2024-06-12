@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 
 import { storePost } from '@/lib/posts';
+import { uploadImage } from '@/lib/cloudinary';
 
 export async function createPost(_prevState, formData) {
   // INFO: Make it a SERVER ACTION otherwise it will be a Client Action / Form Action
@@ -29,8 +30,16 @@ export async function createPost(_prevState, formData) {
     return { errors }
   }
 
+  let imageUrl;
+
+  try {
+    imageUrl = await uploadImage(image);
+  } catch (error) {
+    throw new Error('Error uploading image. Post was not created');
+  }
+
   await storePost({
-    imageUrl: '',
+    imageUrl: imageUrl,
     title,
     content,
     userId: 1
