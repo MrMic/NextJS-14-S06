@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { storePost } from '@/lib/posts';
+import { storePost, updatePostLikeStatus } from '@/lib/posts';
 import { uploadImage } from '@/lib/cloudinary';
 
 export async function createPost(_prevState, formData) {
@@ -46,4 +46,8 @@ export async function createPost(_prevState, formData) {
   })
 
   redirect('/feed');
+}
+
+export async function togglePostLikeStatus(postId) {
+  updatePostLikeStatus(postId, 2);
 }
